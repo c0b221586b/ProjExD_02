@@ -55,6 +55,13 @@ def main():
 
     clock = pg.time.Clock()
     tmr = 0
+
+    accs = [a for a in range(1, 11)]
+    for r in range(1,11):
+        bd_img = pg.Surface((20*r, 20*r))
+        pg.draw.circle(bd.img, (255, 0, 0), (10*r, 10*r), 10*r)
+        bd_imgs.append(bd.img)
+        
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
