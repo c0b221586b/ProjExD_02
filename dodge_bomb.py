@@ -27,6 +27,7 @@ def main():
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
     kk2_img = pg.transform.flip(kk_img, True, False)
+
     kk_dict = {
         (0, 0):kk_img,
         (-5, -5):pg.transform.rotozoom(kk_img, -45, 1.0),
@@ -38,6 +39,7 @@ def main():
         (+5,-5):pg.transform.rotozoom(kk2_img, 45, 1.0),
         (0, -5):pg.transform.rotozoom(kk2_img, 90, 1.0),
     }
+    
     kk_rct = kk_img.get_rect()
     
     kk_rct.center = 900, 400
@@ -61,7 +63,7 @@ def main():
         bd_img = pg.Surface((20*r, 20*r))
         pg.draw.circle(bd.img, (255, 0, 0), (10*r, 10*r), 10*r)
         bd_imgs.append(bd.img)
-        
+
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
