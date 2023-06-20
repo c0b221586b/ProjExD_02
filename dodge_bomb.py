@@ -11,6 +11,7 @@ delta = {
     pg.K_RIGHT:(+5, 0),
 }
 
+
 def check_bound(rect: pg.Rect) -> tuple[bool, bool]:
 
     yoko, tate = True, True
@@ -25,9 +26,22 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
-    kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+    kk2_img = pg.transform.flip(kk_img, True, False)
+    kk_dict = {
+        (0, 0):kk_img,
+        (-5, -5):pg.transform.rotozoom(kk_img, -45, 1.0),
+        (-5, 0):kk_img,
+        (-5, +5):pg.transform.rotozoom(kk_img, 45, 1.0),
+        (0, +5):pg.transform.rotozoom(kk2_img,-90, 1.0),
+        (+5, +5):pg.transform.rotozoom(kk2_img,-45, 1.0),
+        (+5, 0):kk2_img,
+        (+5,-5):pg.transform.rotozoom(kk2_img, 45, 1.0),
+        (0, -5):pg.transform.rotozoom(kk2_img, 90, 1.0),
+    }
     kk_rct = kk_img.get_rect()
+    
     kk_rct.center = 900, 400
+
     bd_img = pg.Surface((20, 20))
     pg.draw.circle(bd_img, (255, 0, 0), (10, 10), 10)
     bd_img.set_colorkey((0, 0, 0))
@@ -62,7 +76,8 @@ def main():
 
 
         screen.blit(bg_img, [0, 0])
-        screen.blit(kk_img, kk_rct)
+        #screen.blit(kk_img, kk_rct)
+        screen.blit(kk_dict[tuple(total_move)], kk_rct)
         bd_rct.move_ip(vx, vy)
         yoko, tate = check_bound(bd_rct)
         if not yoko:
