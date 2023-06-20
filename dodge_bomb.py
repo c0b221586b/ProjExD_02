@@ -20,7 +20,8 @@ def main():
     bd_img.set_colorkey((0, 0, 0))
     bd_rct = bg_img.get_rect()
     bd_rct.center = x, y
-    
+    vx = +5
+    vy = +5
 
     
     tmr = 0
@@ -34,6 +35,8 @@ def main():
         screen.blit(bd_img, bd_rct)
         pg.display.update()
         tmr += 1
+        bd_rct.move_ip(vx, vy)
+        
         clock.tick(10)
 
 
